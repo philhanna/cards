@@ -7,11 +7,19 @@ import (
 	"path/filepath"
 )
 
+// ---------------------------------------------------------------------
+// Type definitions
+// ---------------------------------------------------------------------
+
 // A Card is a combination of a Rank and a Suit
 type Card struct {
 	Rank Rank
 	Suit Suit
 }
+
+// ---------------------------------------------------------------------
+// Methods
+// ---------------------------------------------------------------------
 
 // Returns a representation of the card as a string
 func (c *Card) String() string {
