@@ -71,7 +71,7 @@ func (c *Card) GetSVG() (string, error) {
 
 	// Create the file name
 	baseName := suitName + "_" + rankName + ".svg"
-	fileName, _ := filepath.Abs(filepath.Join("..", "svg_playing_cards", "fronts", baseName))
+	fileName, _ := filepath.Abs(filepath.Join("svg_playing_cards", "fronts", baseName))
 	
 	// Load the SVG contents
 	fp, err := os.Open(fileName)
