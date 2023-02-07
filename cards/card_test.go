@@ -11,18 +11,16 @@ func TestCard_GetSVG(t *testing.T) {
 		Suit Suit
 	}
 	tests := []struct {
-		name    string
-		fields  fields
-		want    string
+		name string
+		card Card
+		want string
 	}{
-		{"three of clubs", fields{THREE, CLUBS}, `sodipodi:docname="clubs_3.svg"`},
+		{"three of clubs", *NewCard(THREE, CLUBS), `sodipodi:docname="clubs_3.svg"`},
+		{"ace of spades", *NewCard(ACE, SPADES), `sodipodi:docname="spades_ace_simple.svg"`},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Card{
-				Rank: tt.fields.Rank,
-				Suit: tt.fields.Suit,
-			}
+			c := tt.card
 			have, err := c.GetSVG()
 			if err != nil {
 				t.Error(err)
