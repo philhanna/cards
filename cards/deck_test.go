@@ -2,14 +2,13 @@ package cards
 
 import (
 	"fmt"
-	// "sort"
+	"sort"
 	"strings"
 	"testing"
 )
 
-func PrintDeck(label string, deck *Deck) {
+func PrintDeck(label string, cards []Card) {
 	fmt.Printf("%s:\n", label)
-	cards := []Card(*deck)
 	buffer := make([]string, 0)
 	n := len(cards) / 4
 	for _, card := range cards {
@@ -23,36 +22,36 @@ func PrintDeck(label string, deck *Deck) {
 
 func TestDeck(t *testing.T) {
 	deck := NewDeck()
-	PrintDeck("New deck", deck)
+	PrintDeck("New deck", []Card(*deck))
 }
 
 func TestDeckShuffled(t *testing.T) {
 	deck := NewDeck()
 	deck.Shuffle()
-	PrintDeck("Shuffled deck", deck)
+	PrintDeck("Shuffled deck", []Card(*deck))
 }
 
-/*func TestDeckShuffledThenSorted(t *testing.T) {
+func TestDeckShuffledThenSorted(t *testing.T) {
 	deck := NewDeck()
 	deck.Shuffle()
 	sort.Sort(deck)
-	PrintDeck("Shuffled deck", deck)
-}*/
+	PrintDeck("Shuffled then sorted deck", []Card(*deck))
+}
 
 func TestPinochleDeck(t *testing.T) {
 	deck := NewPinochleDeck()
-	PrintDeck("New pinochle deck", deck)
+	PrintDeck("New pinochle deck", []Card(*deck))
 }
 
 func TestPinochleDeckShuffled(t *testing.T) {
 	deck := NewPinochleDeck()
 	deck.Shuffle()
-	PrintDeck("New pinochle deck", deck)
+	PrintDeck("New pinochle deck shuffled", []Card(*deck))
 }
 
-/*func TestPinochleDeckShuffledThenSorted(t *testing.T) {
+func TestPinochleDeckShuffledThenSorted(t *testing.T) {
 	deck := NewPinochleDeck()
 	deck.Shuffle()
-	//sort.Sort(deck)
-	PrintDeck("New pinochle deck", deck)
-}*/
+	sort.Sort(deck)
+	PrintDeck("New pinochle deck shuffled then sorted", []Card(*deck))
+}
