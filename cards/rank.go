@@ -73,9 +73,9 @@ func (r Rank) Offset() int {
 	case JACK:
 		offset = 11
 	case QUEEN:
-		offset = 12
-	case KING:
 		offset = 13
+	case KING:
+		offset = 14
 	case ACE:
 		offset = 1
 	}

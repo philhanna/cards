@@ -8,7 +8,7 @@ import "math/rand"
 
 // A Deck is an ordered list of cards.
 type Deck struct {
-	Cards []Card
+	Cards   []Card
 	Orderer RankOrder
 }
 
@@ -23,9 +23,27 @@ func NewDeck() *Deck {
 	for i := 0; i < 4; i++ {
 		suit := Suit(i)
 		for j := 14; j >= 2; j-- {
-			rank := Rank(j) 
+			rank := Rank(j)
 			card := NewCard(rank, suit)
 			cards = append(cards, card)
+		}
+	}
+	d.Cards = cards
+	return d
+}
+
+// NewPinochleDeck constructs a 48-card Pinochle deck and returns a pointer to it.
+func NewPinochleDeck() *Deck {
+	d := new(Deck)
+	cards := make([]Card, 0)
+	ranks := []Rank{ACE, TEN, KING, QUEEN, JACK, NINE}
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 4; j++ {
+			suit := Suit(j)
+			for _, rank := range ranks {
+				card := NewCard(rank, suit)
+				cards = append(cards, card)
+			}
 		}
 	}
 	d.Cards = cards
