@@ -22,12 +22,48 @@ const (
 	JACK
 	QUEEN
 	KING
-	ACE	
+	ACE
 )
 
 // -----------------------------------------------------------------------
 // Methods
 // -----------------------------------------------------------------------
+
+// Compares two ranks in a regular deck
+func (r Rank) Compare(other Rank) int {
+	return compare(int(r), int(other))
+}
+
+// Compares two ranks in a Pinochle deck
+func (r Rank) ComparePinochle(other Rank) int {
+	return compare(int(pinochleRank(r)), int(pinochleRank(other)))
+}
+
+// Helper function used by Compare and ComparePinochle
+func compare(ir, io int) int {
+	switch {
+	case ir < io:
+		return -1
+	case ir > io:
+		return 1
+	default:
+		return 0
+	}
+}
+
+// Helper function to adjust order for Pinochle decks
+func pinochleRank(rank Rank) int {
+	switch rank {
+	case NINE, JACK, QUEEN, KING:
+		return int(rank)
+	case TEN:
+		return int(KING) + 1
+	case ACE:
+		return int(KING) + 2
+	default:
+		return -1
+	}
+}
 
 // Returns a representation of the type as a string
 func (r Rank) String() string {

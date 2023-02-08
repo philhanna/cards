@@ -67,17 +67,3 @@ func (d *PinochleDeck) Swap(i int, j int) {
 	dc := []Card(*d)
 	dc[i], dc[j] = dc[j], dc[i]
 }
-
-// Helper function to adjust order for Pinochle decks
-func pinochleRank(rank Rank) int {
-	switch rank {
-	case NINE, JACK, QUEEN, KING:
-		return int(rank)
-	case TEN:
-		return int(KING) + 1
-	case ACE:
-		return int(KING) + 2
-	default:
-		return -1
-	}
-}
