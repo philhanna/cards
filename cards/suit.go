@@ -51,3 +51,20 @@ func (suit Suit) String() string {
 		return suit.Glyph()	
 	}
 }
+
+// Returns the offset in the Unicode system to the beginning of cards
+// for this suit
+func (suit Suit) Offset() int {
+	var offset int
+	switch suit {
+	case SPADES:
+		offset = 0x1F0A0
+	case HEARTS:
+		offset = 0x1F0B0
+	case DIAMONDS:
+		offset = 0x1F0C0
+	case CLUBS:
+		offset = 0x1F0D0
+	}
+	return offset
+}

@@ -41,48 +41,8 @@ func (c Card) String() string {
 
 // Returns a representation of the card as a Unicode string
 func (c Card) Unicode() string {
-	var suitOffset int
-	switch c.Suit {
-	case SPADES:
-		suitOffset = 0x1F0A0
-	case HEARTS:
-		suitOffset = 0x1F0B0
-	case DIAMONDS:
-		suitOffset = 0x1F0C0
-	case CLUBS:
-		suitOffset = 0x1F0D0
-	}
-
-	var rankOffset int
-	switch c.Rank {
-	case TWO:
-		rankOffset = 2
-	case THREE:
-		rankOffset = 3
-	case FOUR:
-		rankOffset = 4
-	case FIVE:
-		rankOffset = 5
-	case SIX:
-		rankOffset = 6
-	case SEVEN:
-		rankOffset = 7
-	case EIGHT:
-		rankOffset = 8
-	case NINE:
-		rankOffset = 9
-	case TEN:
-		rankOffset = 10
-	case JACK:
-		rankOffset = 11
-	case QUEEN:
-		rankOffset = 12
-	case KING:
-		rankOffset = 13
-	case ACE:
-		rankOffset = 1
-	}
-	
+	suitOffset := c.Suit.Offset()
+	rankOffset := c.Rank.Offset()	
 	cardOffset := suitOffset + rankOffset
 	s := fmt.Sprintf("%c", cardOffset)
 	return s

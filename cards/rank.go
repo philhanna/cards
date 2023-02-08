@@ -46,3 +46,38 @@ func (r Rank) String() string {
 		return "?"
 	}
 }
+
+// Returns the offset in the Unicode system to the beginning of cards
+// for this rank
+func (r Rank) Offset() int {
+	offset := 0
+	switch r {
+	case TWO:
+		offset = 2
+	case THREE:
+		offset = 3
+	case FOUR:
+		offset = 4
+	case FIVE:
+		offset = 5
+	case SIX:
+		offset = 6
+	case SEVEN:
+		offset = 7
+	case EIGHT:
+		offset = 8
+	case NINE:
+		offset = 9
+	case TEN:
+		offset = 10
+	case JACK:
+		offset = 11
+	case QUEEN:
+		offset = 12
+	case KING:
+		offset = 13
+	case ACE:
+		offset = 1
+	}
+	return offset
+}
