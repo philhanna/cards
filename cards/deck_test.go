@@ -11,11 +11,8 @@ func PrintDeck(label string, deck *Deck) {
 	buffer := make([]string, 0)
 	for _, card := range deck.Cards {
 		buffer = append(buffer, card.Unicode())
-		if len(buffer) == 13 {
-			fmt.Printf("%s\n", strings.Join(buffer, " "))
-			buffer = buffer[0:0]			
-		}
 	}
+	fmt.Printf("%s\n", strings.Join(buffer, " "))
 }
 
 func TestDeckString(t *testing.T) {
