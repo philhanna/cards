@@ -55,11 +55,8 @@ func (d *PinochleDeck) Len() int {
 // Less compares two Rank objects in a Pinochle deck and returns true
 // if the first one is less than the second one.
 func (d *PinochleDeck) Less(i int, j int) bool {
-	var rankI, rankJ int
 	dc := []Card(*d)
-	rankI = pinochleRank(dc[i].Rank)
-	rankJ = pinochleRank(dc[j].Rank)
-	return rankI < rankJ
+	return dc[i].Rank.ComparePinochle(dc[j].Rank) < 0
 }
 
 // Exchanges two Rank objects in the array.

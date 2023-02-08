@@ -55,7 +55,7 @@ func (d *Deck) Len() int {
 // one is less than the second one.
 func (d *Deck) Less(i int, j int) bool {
 	dc := []Card(*d)
-	return dc[i].Rank < dc[j].Rank
+	return dc[i].Rank.Compare(dc[j].Rank) < 0
 }
 
 // Exchanges two Rank objects in the array.
