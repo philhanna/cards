@@ -2,6 +2,11 @@ package cards
 
 import "fmt"
 
+// -----------------------------------------------------------------------
+// Type definitions
+// -----------------------------------------------------------------------
+
+// A rank is one of the 13 levels of cards in a deck.
 type Rank int
 
 const (
@@ -19,6 +24,10 @@ const (
 	KING
 	ACE	
 )
+
+// -----------------------------------------------------------------------
+// Methods
+// -----------------------------------------------------------------------
 
 // Returns a representation of the type as a string
 func (r Rank) String() string {
