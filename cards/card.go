@@ -22,11 +22,11 @@ type Card struct {
 // ---------------------------------------------------------------------
 
 // Creates a new Card from a rank and suit
-func NewCard(rank Rank, suit Suit) *Card {
+func NewCard(rank Rank, suit Suit) Card {
 	p := new(Card)
 	p.Rank = rank
 	p.Suit = suit
-	return p
+	return *p
 }
 
 // ---------------------------------------------------------------------
@@ -34,15 +34,64 @@ func NewCard(rank Rank, suit Suit) *Card {
 // ---------------------------------------------------------------------
 
 // Returns a representation of the card as a string
-func (c *Card) String() string {
+func (c Card) String() string {
 	s := c.Rank.String() + c.Suit.String()
 	return s
 }
 
-// Returns the SVG image of this card
-func (c *Card) GetSVG() (string, error) {
-	var rankName, suitName string
+// Returns a representation of the card as a Unicode string
+func (c Card) Unicode() string {
+	var suitOffset int
+	switch c.Suit {
+	case SPADES:
+		suitOffset = 0x1F0A0
+	case HEARTS:
+		suitOffset = 0x1F0B0
+	case DIAMONDS:
+		suitOffset = 0x1F0C0
+	case CLUBS:
+		suitOffset = 0x1F0D0
+	}
+
+	var rankOffset int
+	switch c.Rank {
+	case TWO:
+		rankOffset = 2
+	case THREE:
+		rankOffset = 3
+	case FOUR:
+		rankOffset = 4
+	case FIVE:
+		rankOffset = 5
+	case SIX:
+		rankOffset = 6
+	case SEVEN:
+		rankOffset = 7
+	case EIGHT:
+		rankOffset = 8
+	case NINE:
+		rankOffset = 9
+	case TEN:
+		rankOffset = 10
+	case JACK:
+		rankOffset = 11
+	case QUEEN:
+		rankOffset = 12
+	case KING:
+		rankOffset = 13
+	case ACE:
+		rankOffset = 1
+	}
 	
+	cardOffset := suitOffset + rankOffset
+	s := fmt.Sprintf("%c", cardOffset)
+	return s
+}
+
+// Returns the SVG image of this card
+func (c Card) GetSVG() (string, error) {
+	var rankName, suitName string
+
 	// Get the rank name
 	switch c.Rank {
 	case TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN:
@@ -72,7 +121,7 @@ func (c *Card) GetSVG() (string, error) {
 	// Create the file name
 	baseName := suitName + "_" + rankName + ".svg"
 	fileName, _ := filepath.Abs(filepath.Join("svg_playing_cards", "fronts", baseName))
-	
+
 	// Load the SVG contents
 	fp, err := os.Open(fileName)
 	if err != nil {
