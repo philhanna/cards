@@ -52,6 +52,7 @@ func (d *PinochleDeck) Shuffle() {
 func (d *PinochleDeck) Len() int {
 	return len([]Card(*d))
 }
+
 // Less compares two Rank objects in a Pinochle deck and returns true
 // if the first one is less than the second one.
 func (d *PinochleDeck) Less(i int, j int) bool {

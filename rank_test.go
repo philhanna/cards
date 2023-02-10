@@ -4,15 +4,15 @@ import "testing"
 
 func TestRank_Compare(t *testing.T) {
 	const (
-		LESS = -1
+		LESS    = -1
 		GREATER = 1
-		EQUAL = 0
+		EQUAL   = 0
 	)
 	tests := []struct {
-		name string
-		r    Rank
+		name  string
+		r     Rank
 		other Rank
-		want int
+		want  int
 	}{
 		{"3 > 2", THREE, TWO, GREATER},
 		{"J = J", JACK, JACK, EQUAL},
@@ -29,15 +29,15 @@ func TestRank_Compare(t *testing.T) {
 
 func TestRank_ComparePinochle(t *testing.T) {
 	const (
-		LESS = -1
+		LESS    = -1
 		GREATER = 1
-		EQUAL = 0
+		EQUAL   = 0
 	)
 	tests := []struct {
-		name string
-		r    Rank
+		name  string
+		r     Rank
 		other Rank
-		want int
+		want  int
 	}{
 		{"9 < Q", NINE, QUEEN, LESS},
 		{"J = J", JACK, JACK, EQUAL},

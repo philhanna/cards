@@ -32,7 +32,6 @@ func TestPinochleDeckSort(t *testing.T) {
 		t.Errorf("card2: want=%v,have=%v", card2, deck[2])
 	}
 
-	
 }
 func TestPinochleDeck(t *testing.T) {
 	deck := NewPinochleDeck()

@@ -42,7 +42,7 @@ func (c Card) String() string {
 // Returns a representation of the card as a Unicode string
 func (c Card) Unicode() string {
 	suitOffset := c.Suit.Offset()
-	rankOffset := c.Rank.Offset()	
+	rankOffset := c.Rank.Offset()
 	cardOffset := suitOffset + rankOffset
 	s := fmt.Sprintf("%c", cardOffset)
 	return s

@@ -48,7 +48,7 @@ func (suit Suit) String() string {
 	if runtime.GOOS == "windows" {
 		return suit.Character()
 	} else {
-		return suit.Glyph()	
+		return suit.Glyph()
 	}
 }
 
