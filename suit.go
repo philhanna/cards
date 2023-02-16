@@ -11,6 +11,9 @@ const (
 	CLUBS
 )
 
+// A slice of the four suits
+var Suits = []Suit{SPADES, HEARTS, DIAMONDS, CLUBS}
+
 // Returns the Unicode glyph that represents this suit, i. e. ♠, ♡, ♢, ♣
 func (suit Suit) Glyph() string {
 	switch suit {
