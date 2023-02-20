@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning].
 The format is based on [Keep a Changelog].
 
+## [Unreleased]
+- Added badges to README
+  
 ## [v1.0.0] - 2023-02-16
 
 A Go library for applications that use playing cards.
