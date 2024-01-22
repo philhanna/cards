@@ -54,21 +54,19 @@ func compare(ir, io int) int {
 // Helper function to adjust order for Pinochle decks
 func pinochleRank(rank Rank) int {
 	switch rank {
-	case NINE, JACK, QUEEN, KING:
+	default:
 		return int(rank)
 	case TEN:
 		return int(KING) + 1
 	case ACE:
 		return int(KING) + 2
-	default:
-		return -1
 	}
 }
 
 // Returns a representation of the type as a string
 func (r Rank) String() string {
 	switch r {
-	case TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN:
+	default:
 		return fmt.Sprint(int(r))
 	case JACK:
 		return "J"
@@ -78,8 +76,6 @@ func (r Rank) String() string {
 		return "K"
 	case ACE:
 		return "A"
-	default:
-		return "?"
 	}
 }
 

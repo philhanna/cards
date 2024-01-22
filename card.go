@@ -91,10 +91,7 @@ func (c Card) GetSVG() (string, error) {
 		return "", err
 	}
 	defer fp.Close()
-	contents, err := io.ReadAll(fp)
-	if err != nil {
-		return "", err
-	}
+	contents, _ := io.ReadAll(fp)
 
 	// Return contents as a string
 	return string(contents), nil
