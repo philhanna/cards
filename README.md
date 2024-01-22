@@ -7,7 +7,7 @@ Contains basic types for:
 - `Suit` - SPADES, HEARTS, DIAMONDS, and CLUBS.
 - `Rank` - 2 through Ace, with ordering functions to handle regular and pinochle decks.
 - `Card` - A combination of `Rank` and `Suit`. The library contains SVG images for each card.
-- `Deck` - A collection of `Card`s for a regular 52-card deck.
+- `RegularDeck` - A collection of `Card`s for a regular 52-card deck.
 - `PinochleDeck` - A collection of `Card`s for a 48-card Pinochle deck.
 
 ## References
