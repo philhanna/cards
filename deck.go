@@ -6,29 +6,8 @@ import "math/rand"
 // Type definitions
 // -----------------------------------------------------------------------
 
-// A Deck is an ordered list of cards.
+// Deck is the abstract base type for RegularDeck and PinochleDeck
 type Deck []Card
-
-// Ranks is a slice of Rank objects
-type Ranks []Rank
-
-// -----------------------------------------------------------------------
-// Constructors
-// -----------------------------------------------------------------------
-
-// NewDeck constructs a 52-card regular deck and returns a pointer to it.
-func NewDeck() *Deck {
-	cards := make(Deck, 0)
-	for i := 0; i < 4; i++ {
-		suit := Suit(i)
-		for j := 14; j >= 2; j-- {
-			rank := Rank(j)
-			card := NewCard(rank, suit)
-			cards = append(cards, card)
-		}
-	}
-	return &cards
-}
 
 // -----------------------------------------------------------------------
 // Methods
@@ -42,24 +21,23 @@ func (d *Deck) Shuffle() {
 	})
 }
 
+// Cards returns the underlying array of cards
+func (d *Deck) Cards() []Card {
+	return []Card(*d)
+}
+
 // -----------------------------------------------------------------------
-// Implementation of the sort interface for regular deck
+// Implementation of the sort interface. RegularDeck and PinochleDeck
+// have their own Less() methods.
 // -----------------------------------------------------------------------
 
 // Len returns the number of cards in the deck.
-func (d *Deck) Len() int {
-	return len([]Card(*d))
-}
-
-// Less compares two cards and returns true if the first
-// one is less than the second one.
-func (d *Deck) Less(i int, j int) bool {
-	dc := []Card(*d)
-	return dc[i].Rank.Compare(dc[j].Rank) < 0
+func (d Deck) Len() int {
+	return len(d.Cards())
 }
 
 // Exchanges two Rank objects in the array.
-func (d *Deck) Swap(i int, j int) {
-	dc := []Card(*d)
+func (d Deck) Swap(i int, j int) {
+	dc := d.Cards()
 	dc[i], dc[j] = dc[j], dc[i]
 }

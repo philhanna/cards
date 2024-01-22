@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func printDeck(label string, cards []Card) {
+func PrintDeck(label string, cards []Card) {
 	fmt.Printf("%s:\n", label)
 	buffer := make([]string, 0)
 	n := len(cards) / 4

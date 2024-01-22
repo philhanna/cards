@@ -1,16 +1,21 @@
 package cards
 
-import "math/rand"
+import "slices"
 
 // -----------------------------------------------------------------------
 // Type definitions
 // -----------------------------------------------------------------------
 
-// A PinochleDeck is an ordered list of cards.
-type PinochleDeck []Card
+// PinochleDeck is a subtype of Deck for the Pinochle game
+type PinochleDeck struct {
+	Deck
+}
 
-// PinochleRanks is a slice of Rank objects in a Pinochle deck
-type PinochleRanks []Rank
+var (
+	PinochleRanks = []Rank{
+		NINE, JACK, QUEEN, KING, TEN, ACE,
+	}
+)
 
 // -----------------------------------------------------------------------
 // Constructors
@@ -18,50 +23,34 @@ type PinochleRanks []Rank
 
 // NewPinochleDeck constructs a 48-card Pinochle deck and returns a pointer to it.
 func NewPinochleDeck() *PinochleDeck {
-	cards := make(PinochleDeck, 0)
-	ranks := []Rank{ACE, TEN, KING, QUEEN, JACK, NINE}
+	pd := new(PinochleDeck)
+	cards := make([]Card, 0)
 	for i := 0; i < 2; i++ {
-		for j := 0; j < 4; j++ {
-			suit := Suit(j)
-			for _, rank := range ranks {
+		for _, suit := range Suits {
+			for _, rank := range pd.Ranks() {
 				card := NewCard(rank, suit)
 				cards = append(cards, card)
 			}
 		}
 	}
-	return &cards
+	pd.Deck = cards
+	return pd
 }
 
-// -----------------------------------------------------------------------
+// ---------------------------------------------------------------------
 // Methods
-// -----------------------------------------------------------------------
+// ---------------------------------------------------------------------
 
-// Shuffle randomizes the order of cards in a Deck
-func (d *PinochleDeck) Shuffle() {
-	rand.Shuffle(len(*d), func(i int, j int) {
-		dc := []Card(*d)
-		dc[i], dc[j] = dc[j], dc[i]
-	})
+// Less is used in the sort interface
+func (pd PinochleDeck) Less(i, j int) bool {
+	rankIndexI := slices.Index(pd.Ranks(), pd.Cards()[i].Rank)
+	rankIndexJ := slices.Index(pd.Ranks(), pd.Cards()[j].Rank)
+	return rankIndexI < rankIndexJ
 }
 
-// -----------------------------------------------------------------------
-// Implementation of the sort interface for pinochle deck
-// -----------------------------------------------------------------------
-
-// Len returns the number of cards in the deck.
-func (d *PinochleDeck) Len() int {
-	return len([]Card(*d))
-}
-
-// Less compares two Rank objects in a Pinochle deck and returns true
-// if the first one is less than the second one.
-func (d *PinochleDeck) Less(i int, j int) bool {
-	dc := []Card(*d)
-	return dc[i].Rank.ComparePinochle(dc[j].Rank) < 0
-}
-
-// Exchanges two Rank objects in the array.
-func (d *PinochleDeck) Swap(i int, j int) {
-	dc := []Card(*d)
-	dc[i], dc[j] = dc[j], dc[i]
+// Ranks returns the ranks in order for a Pinochle deck
+func (pd PinochleDeck) Ranks() []Rank {
+	return []Rank{
+		NINE, JACK, QUEEN, KING, TEN, ACE,
+	}
 }
