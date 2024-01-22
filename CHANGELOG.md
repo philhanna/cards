@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog].
 ## [Unreleased]
 - Added badges to README
   
+## [v1.1.0] - 2024-01-22
+
+- Embedded SVG images as a file system
+- Improved test coverage to 100%
+
 ## [v1.0.0] - 2023-02-16
 
 A Go library for applications that use playing cards.
@@ -22,6 +27,7 @@ Incomplete development version
 
 [Semantic Versioning]: http://semver.org
 [Keep a Changelog]: http://keepachangelog.com
-[Unreleased]: https://github.com/philhanna/cards/compare/v1.0.0..HEAD 
+[Unreleased]: https://github.com/philhanna/cards/compare/v1.1.0..HEAD 
+[v1.1.0]: https://github.com/philhanna/cards/compare/v1.0.0..v1.1.0
 [v1.0.0]: https://github.com/philhanna/cards/compare/v0.1.0..v1.0.0
 [v0.1.0]: https://github.com/philhanna/cards/compare/ef5db44..v0.1.0
