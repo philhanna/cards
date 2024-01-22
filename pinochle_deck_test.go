@@ -38,3 +38,18 @@ func TestPinochleDeckShuffledThenSorted(t *testing.T) {
 	sort.Sort(deck)
 	PrintDeck("New pinochle deck shuffled then sorted", deck.Cards())
 }
+
+func TestPinochleRemove(t *testing.T) {
+	var ACE_OF_SPADES = NewCard(ACE, SPADES)
+	deck := NewPinochleDeck()
+	removed := deck.Remove(ACE_OF_SPADES)
+	assert.True(t, removed)
+	nAceSpades := 0
+	for _, card := range deck.Cards() {
+		if card == ACE_OF_SPADES {
+			nAceSpades++
+		}
+	}
+	assert.Equal(t, 47, deck.Len())
+	assert.Equal(t, 1, nAceSpades)
+}

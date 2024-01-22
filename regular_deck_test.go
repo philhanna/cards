@@ -39,3 +39,18 @@ func TestRegularDeckShuffledThenSorted(t *testing.T) {
 	sort.Sort(deck)
 	PrintDeck("Shuffled then sorted deck", deck.Cards())
 }
+
+func TestRegularDeckRemove(t *testing.T) {
+	var ACE_OF_SPADES = NewCard(ACE, SPADES)
+	deck := NewRegularDeck()
+	removed := deck.Remove(ACE_OF_SPADES)
+	assert.True(t, removed)
+	nAceSpades := 0
+	for _, card := range deck.Cards() {
+		if card == ACE_OF_SPADES {
+			nAceSpades++
+		}
+	}
+	assert.Equal(t, 51, deck.Len())
+	assert.Equal(t, 0, nAceSpades)
+}
