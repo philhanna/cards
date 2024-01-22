@@ -6,10 +6,6 @@ import (
 )
 
 func TestCard_GetSVG(t *testing.T) {
-	type fields struct {
-		Rank Rank
-		Suit Suit
-	}
 	tests := []struct {
 		name string
 		card Card

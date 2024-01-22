@@ -1,11 +1,14 @@
 package cards
 
 import (
+	"embed"
 	"fmt"
 	"io"
-	"os"
 	"path/filepath"
 )
+
+// go:embed svg_playing_cards
+var svgImages embed.FS
 
 // ---------------------------------------------------------------------
 // Type definitions
@@ -80,10 +83,10 @@ func (c Card) GetSVG() (string, error) {
 
 	// Create the file name
 	baseName := suitName + "_" + rankName + ".svg"
-	fileName, _ := filepath.Abs(filepath.Join("svg_playing_cards", "fronts", baseName))
+	fileName := filepath.Join("fronts", baseName)
 
 	// Load the SVG contents
-	fp, err := os.Open(fileName)
+	fp, err := svgImages.Open(fileName)
 	if err != nil {
 		return "", err
 	}
