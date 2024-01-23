@@ -1,7 +1,5 @@
 package cards
 
-import "slices"
-
 // ---------------------------------------------------------------------
 // Type Definitions
 // ---------------------------------------------------------------------
@@ -11,22 +9,25 @@ type RegularDeck struct {
 	Deck
 }
 
+var RegularRanks = []Rank{
+	TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE,
+}
+
 // ---------------------------------------------------------------------
 // Constructor
 // ---------------------------------------------------------------------
 
-// NewRegularDeck constructs a 52-card regular deck and returns a pointer to it.
-func NewRegularDeck() *RegularDeck {
-	rd := new(RegularDeck)
-	cards := make([]Card, 0)
-	for _, suit := range Suits {
-		for _, rank := range rd.Ranks() {
-			card := NewCard(rank, suit)
-			cards = append(cards, card)
+// NewRegularDeck constructs a 52-card regular deck.
+func NewRegularDeck(cards ...Card) RegularDeck {
+	if len(cards) == 0 {
+		for _, suit := range Suits {
+			for _, rank := range RegularRanks {
+				card := NewCard(rank, suit)
+				cards = append(cards, card)
+			}
 		}
 	}
-	rd.Deck = cards
-	return rd
+	return RegularDeck{Deck: NewDeck(cards...)}
 }
 
 // ---------------------------------------------------------------------
@@ -35,14 +36,6 @@ func NewRegularDeck() *RegularDeck {
 
 // Less is used in the sort interface
 func (rd RegularDeck) Less(i, j int) bool {
-	rankIndexI := slices.Index(rd.Ranks(), rd.Cards()[i].Rank)
-	rankIndexJ := slices.Index(rd.Ranks(), rd.Cards()[j].Rank)
-	return rankIndexI < rankIndexJ
-}
-
-// Ranks returns a list of ranks in ascending order for a regular deck.
-func (rd RegularDeck) Ranks() []Rank {
-	return []Rank{
-		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE,
-	}
+	diff := Compare(rd.Cards[i], rd.Cards[j], RegularRanks)
+	return diff < 0
 }
