@@ -53,14 +53,14 @@ func TestPinochleRemove(t *testing.T) {
 
 func TestPinochleSort2(t *testing.T) {
 	var (
-		TWO_OF_HEARTS  = NewCard(TWO, HEARTS)
-		THREE_OF_CLUBS = NewCard(THREE, CLUBS)
+		TEN_OF_HEARTS  = NewCard(TEN, HEARTS)
+		KING_OF_CLUBS = NewCard(KING, CLUBS)
 	)
 	deck := NewPinochleDeck(
-		THREE_OF_CLUBS,
-		TWO_OF_HEARTS,
+		TEN_OF_HEARTS,
+		KING_OF_CLUBS,
 	)
 	deck.Sort()
-	assert.Equal(t, deck.Cards[0], TWO_OF_HEARTS)
-	assert.Equal(t, deck.Cards[1], THREE_OF_CLUBS)
+	assert.Equal(t, deck.Cards[0], KING_OF_CLUBS)
+	assert.Equal(t, deck.Cards[1], TEN_OF_HEARTS)
 }
