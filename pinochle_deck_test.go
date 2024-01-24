@@ -7,11 +7,15 @@ import (
 )
 
 func TestPinochleDeckSort(t *testing.T) {
-	pinDeck := NewPinochleDeck(
-		Card{TEN, CLUBS},
-		Card{JACK, DIAMONDS},
-		Card{TEN, SPADES},
+	var (
+		TEN_OF_CLUBS     = Card{TEN, CLUBS}
+		JACK_OF_DIAMONDS = Card{JACK, DIAMONDS}
+		TEN_OF_SPADES    = Card{TEN, SPADES}
 	)
+	cards := []Card{
+		TEN_OF_CLUBS, JACK_OF_DIAMONDS, TEN_OF_SPADES,
+	}
+	pinDeck := PinochleDeck{Deck{cards}}
 	pinDeck.Sort()
 	assert.Equal(t, Card{JACK, DIAMONDS}, pinDeck.Cards[0])
 	assert.Equal(t, Card{TEN, CLUBS}, pinDeck.Cards[1])
@@ -56,11 +60,9 @@ func TestPinochleSort2(t *testing.T) {
 		TEN_OF_HEARTS = NewCard(TEN, HEARTS)
 		KING_OF_CLUBS = NewCard(KING, CLUBS)
 	)
-	deck := NewPinochleDeck(
-		TEN_OF_HEARTS,
-		KING_OF_CLUBS,
-	)
-	deck.Sort()
-	assert.Equal(t, deck.Cards[0], KING_OF_CLUBS)
-	assert.Equal(t, deck.Cards[1], TEN_OF_HEARTS)
+	cards := []Card{TEN_OF_HEARTS, KING_OF_CLUBS}
+	pd := PinochleDeck{Deck{cards}}
+	pd.Sort()
+	assert.Equal(t, pd.Cards[0], KING_OF_CLUBS)
+	assert.Equal(t, pd.Cards[1], TEN_OF_HEARTS)
 }

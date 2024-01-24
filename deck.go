@@ -15,30 +15,6 @@ type Deck struct {
 	Cards []Card
 }
 
-// ---------------------------------------------------------------------
-// Constructor
-// ---------------------------------------------------------------------
-
-// NewDeck returns a new Deck, possibly with an initial set of cards
-func NewDeck(card ...Card) Deck {
-	return Deck{
-		Cards: card,
-	}
-}
-
-// ---------------------------------------------------------------------
-// Functions
-// ---------------------------------------------------------------------
-
-// Compare compares the ranks of two cards and returns a negative
-// integer if the first card has a lower rank, a positive integer if the
-// first card has a higher rank, or zero, if both have the same rank.
-func Compare(iCard Card, jCard Card, ranks []Rank) int {
-	iRankIndex := slices.Index(ranks, iCard.Rank)
-	jRankIndex := slices.Index(ranks, jCard.Rank)
-	return iRankIndex - jRankIndex
-}
-
 // -----------------------------------------------------------------------
 // Methods
 // -----------------------------------------------------------------------
@@ -76,6 +52,4 @@ func (d *Deck) Sort(order []Rank) {
 		jRankIndex := slices.Index(order, jCard.Rank)
 		return iRankIndex < jRankIndex
 	})
-	x := d.Len()
-	_ = x
 }

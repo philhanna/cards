@@ -12,11 +12,12 @@ func TestNewRegularDeck(t *testing.T) {
 }
 
 func TestRegularDeckSort(t *testing.T) {
-	rd := NewRegularDeck(
-		Card{TEN, CLUBS},
-		Card{JACK, DIAMONDS},
-		Card{TEN, SPADES},
-	)
+	cards := []Card{
+		{TEN, CLUBS},
+		{JACK, DIAMONDS},
+		{TEN, SPADES},
+	}
+	rd := RegularDeck{Deck{cards}}
 	rd.Sort()
 	assert.Equal(t, 3, len(rd.Cards))
 	assert.Equal(t, Card{TEN, CLUBS}, rd.Cards[0])

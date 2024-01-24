@@ -18,16 +18,15 @@ var RegularRanks = []Rank{
 // ---------------------------------------------------------------------
 
 // NewRegularDeck constructs a 52-card regular deck.
-func NewRegularDeck(cards ...Card) RegularDeck {
-	if len(cards) == 0 {
-		for _, suit := range Suits {
-			for _, rank := range RegularRanks {
-				card := NewCard(rank, suit)
-				cards = append(cards, card)
-			}
+func NewRegularDeck() RegularDeck {
+	cards := make([]Card, 0)
+	for _, suit := range Suits {
+		for _, rank := range RegularRanks {
+			card := NewCard(rank, suit)
+			cards = append(cards, card)
 		}
 	}
-	return RegularDeck{Deck: NewDeck(cards...)}
+	return RegularDeck{Deck{cards}}
 }
 
 // ---------------------------------------------------------------------
