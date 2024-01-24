@@ -28,14 +28,14 @@ func TestRegularDeckSort(t *testing.T) {
 func TestRegularDeckShuffled(t *testing.T) {
 	deck := NewRegularDeck()
 	deck.Shuffle()
-	PrintDeck("Shuffled deck", deck.cards)
+	printDeck("Shuffled deck", deck.cards)
 }
 
 func TestRegularDeckShuffledThenSorted(t *testing.T) {
 	deck := NewRegularDeck()
 	deck.Shuffle()
 	deck.Sort()
-	PrintDeck("Shuffled then sorted deck", deck.cards)
+	printDeck("Shuffled then sorted deck", deck.cards)
 }
 
 func TestRegularDeckRemove(t *testing.T) {

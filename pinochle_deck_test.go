@@ -24,20 +24,20 @@ func TestPinochleDeckSort(t *testing.T) {
 
 func TestPinochleDeck(t *testing.T) {
 	deck := NewPinochleDeck()
-	PrintDeck("New pinochle deck", deck.cards)
+	printDeck("New pinochle deck", deck.cards)
 }
 
 func TestPinochleDeckShuffled(t *testing.T) {
 	deck := NewPinochleDeck()
 	deck.Shuffle()
-	PrintDeck("New pinochle deck shuffled", deck.cards)
+	printDeck("New pinochle deck shuffled", deck.cards)
 }
 
 func TestPinochleDeckShuffledThenSorted(t *testing.T) {
 	deck := NewPinochleDeck()
 	deck.Shuffle()
 	deck.Sort()
-	PrintDeck("New pinochle deck shuffled then sorted", deck.cards)
+	printDeck("New pinochle deck shuffled then sorted", deck.cards)
 }
 
 func TestPinochleRemove(t *testing.T) {
