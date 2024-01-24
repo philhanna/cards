@@ -34,8 +34,7 @@ func NewRegularDeck(cards ...Card) RegularDeck {
 // Methods
 // ---------------------------------------------------------------------
 
-// Less is used in the sort interface
-func (rd RegularDeck) Less(i, j int) bool {
-	diff := Compare(rd.Cards[i], rd.Cards[j], RegularRanks)
-	return diff < 0
+// Sort sorts the deck in place
+func (rd RegularDeck) Sort() {
+	rd.Deck.Sort(RegularRanks)
 }

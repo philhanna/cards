@@ -1,7 +1,6 @@
 package cards
 
 import (
-	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,7 +12,7 @@ func TestPinochleDeckSort(t *testing.T) {
 		Card{JACK, DIAMONDS},
 		Card{TEN, SPADES},
 	)
-	sort.Sort(pinDeck)
+	pinDeck.Sort()
 	assert.Equal(t, Card{JACK, DIAMONDS}, pinDeck.Cards[0])
 	assert.Equal(t, Card{TEN, CLUBS}, pinDeck.Cards[1])
 	assert.Equal(t, Card{TEN, SPADES}, pinDeck.Cards[2])
@@ -33,7 +32,7 @@ func TestPinochleDeckShuffled(t *testing.T) {
 func TestPinochleDeckShuffledThenSorted(t *testing.T) {
 	deck := NewPinochleDeck()
 	deck.Shuffle()
-	sort.Sort(deck)
+	deck.Sort()
 	PrintDeck("New pinochle deck shuffled then sorted", deck.Cards)
 }
 
@@ -50,4 +49,18 @@ func TestPinochleRemove(t *testing.T) {
 	}
 	assert.Equal(t, 47, deck.Len())
 	assert.Equal(t, 1, nAceSpades)
+}
+
+func TestPinochleSort2(t *testing.T) {
+	var (
+		TWO_OF_HEARTS  = NewCard(TWO, HEARTS)
+		THREE_OF_CLUBS = NewCard(THREE, CLUBS)
+	)
+	deck := NewPinochleDeck(
+		THREE_OF_CLUBS,
+		TWO_OF_HEARTS,
+	)
+	deck.Sort()
+	assert.Equal(t, deck.Cards[0], TWO_OF_HEARTS)
+	assert.Equal(t, deck.Cards[1], THREE_OF_CLUBS)
 }

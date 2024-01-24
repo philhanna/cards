@@ -38,8 +38,7 @@ func NewPinochleDeck(cards ...Card) PinochleDeck {
 // Methods
 // ---------------------------------------------------------------------
 
-// Less is used in the sort interface
-func (rd PinochleDeck) Less(i, j int) bool {
-	diff := Compare(rd.Cards[i], rd.Cards[j], PinochleRanks)
-	return diff < 0
+// Sort sorts the deck in place
+func (pd PinochleDeck) Sort() {
+	pd.Deck.Sort(PinochleRanks)
 }

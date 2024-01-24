@@ -1,7 +1,6 @@
 package cards
 
 import (
-	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -18,7 +17,7 @@ func TestRegularDeckSort(t *testing.T) {
 		Card{JACK, DIAMONDS},
 		Card{TEN, SPADES},
 	)
-	sort.Sort(rd)
+	rd.Sort()
 	assert.Equal(t, 3, len(rd.Cards))
 	assert.Equal(t, Card{TEN, CLUBS}, rd.Cards[0])
 	assert.Equal(t, Card{TEN, SPADES}, rd.Cards[1])
@@ -34,7 +33,7 @@ func TestRegularDeckShuffled(t *testing.T) {
 func TestRegularDeckShuffledThenSorted(t *testing.T) {
 	deck := NewRegularDeck()
 	deck.Shuffle()
-	sort.Sort(deck)
+	deck.Sort()
 	PrintDeck("Shuffled then sorted deck", deck.Cards)
 }
 

@@ -1,7 +1,10 @@
 package cards
 
-import "math/rand"
-import "slices"
+import (
+	"math/rand"
+	"slices"
+	"sort"
+)
 
 // -----------------------------------------------------------------------
 // Type definitions
@@ -40,6 +43,11 @@ func Compare(iCard Card, jCard Card, ranks []Rank) int {
 // Methods
 // -----------------------------------------------------------------------
 
+// Len returns the number of cards in the deck
+func (d Deck) Len() int {
+	return len(d.Cards)
+}
+
 // Remove removes the specified card from the deck, if it exists.
 // Returns true if the card was removed.
 func (d *Deck) Remove(c Card) bool {
@@ -54,22 +62,20 @@ func (d *Deck) Remove(c Card) bool {
 
 // Shuffle randomizes the order of cards in a Deck
 func (d *Deck) Shuffle() {
-	rand.Shuffle(len(d.Cards), func(i int, j int) {
+	rand.Shuffle(d.Len(), func(i int, j int) {
 		d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
 	})
 }
 
-// -----------------------------------------------------------------------
-// Implementation of the sort interface. RegularDeck and PinochleDeck
-// have their own Less() methods.
-// -----------------------------------------------------------------------
-
-// Len returns the number of cards in the deck.
-func (d Deck) Len() int {
-	return len(d.Cards)
-}
-
-// Exchanges two Rank objects in the array.
-func (d Deck) Swap(i int, j int) {
-	d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
+// Sort sorts the deck in place, using the specified ordering
+func (d *Deck) Sort(order []Rank) {
+	sort.Slice(d.Cards, func(i, j int) bool {
+		iCard := d.Cards[i]
+		jCard := d.Cards[j]
+		iRankIndex := slices.Index(order, iCard.Rank)
+		jRankIndex := slices.Index(order, jCard.Rank)
+		return iRankIndex < jRankIndex
+	})
+	x := d.Len()
+	_ = x
 }

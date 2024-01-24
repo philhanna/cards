@@ -51,11 +51,11 @@ func TestDeck_Remove(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			startingLength := tt.d.Len()
+			startingLength := len(tt.d.Cards)
 			want := tt.want
 			have := tt.d.Remove(tt.c)
 			assert.Equal(t, want, have)
-			endingLength := tt.d.Len()
+			endingLength := len(tt.d.Cards)
 			if want {
 				assert.Equal(t, startingLength, endingLength+1)
 			} else {
@@ -129,4 +129,15 @@ func TestCompare(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDeck_Sort(t *testing.T) {
+	var (
+		TWO_OF_SPADES = NewCard(TWO, SPADES)
+		THREE_OF_CLUBS = NewCard(THREE, CLUBS)
+	)
+	deck := NewDeck(THREE_OF_CLUBS, TWO_OF_SPADES)
+	deck.Sort(RegularRanks)
+	assert.Equal(t, deck.Cards[0], TWO_OF_SPADES)
+	assert.Equal(t, deck.Cards[1], THREE_OF_CLUBS)
 }
