@@ -133,7 +133,7 @@ func TestCompare(t *testing.T) {
 
 func TestDeck_Sort(t *testing.T) {
 	var (
-		TWO_OF_SPADES = NewCard(TWO, SPADES)
+		TWO_OF_SPADES  = NewCard(TWO, SPADES)
 		THREE_OF_CLUBS = NewCard(THREE, CLUBS)
 	)
 	deck := NewDeck(THREE_OF_CLUBS, TWO_OF_SPADES)

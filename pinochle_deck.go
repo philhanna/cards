@@ -1,5 +1,10 @@
 package cards
 
+import (
+	"log"
+	"slices"
+)
+
 // -----------------------------------------------------------------------
 // Type definitions
 // -----------------------------------------------------------------------
@@ -19,7 +24,9 @@ var (
 // Constructors
 // -----------------------------------------------------------------------
 
-// NewPinochleDeck constructs a 48-card Pinochle deck and returns a pointer to it.
+// NewPinochleDeck constructs a Pinochle deck. If cards are specified in
+// the parameter list, the deck is created with those cards.  Otherwise,
+// a full 48-card deck is created.
 func NewPinochleDeck(cards ...Card) PinochleDeck {
 	if len(cards) == 0 {
 		for i := 0; i < 2; i++ {
@@ -29,6 +36,11 @@ func NewPinochleDeck(cards ...Card) PinochleDeck {
 					cards = append(cards, card)
 				}
 			}
+		}
+	}
+	for _, card := range cards {
+		if !slices.Contains(PinochleRanks, card.Rank) {
+			log.Fatalf("%s is not a valid card in a Pinochle deck", card)
 		}
 	}
 	return PinochleDeck{Deck: NewDeck(cards...)}

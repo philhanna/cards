@@ -53,7 +53,7 @@ func TestPinochleRemove(t *testing.T) {
 
 func TestPinochleSort2(t *testing.T) {
 	var (
-		TEN_OF_HEARTS  = NewCard(TEN, HEARTS)
+		TEN_OF_HEARTS = NewCard(TEN, HEARTS)
 		KING_OF_CLUBS = NewCard(KING, CLUBS)
 	)
 	deck := NewPinochleDeck(
