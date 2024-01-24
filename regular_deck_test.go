@@ -19,23 +19,23 @@ func TestRegularDeckSort(t *testing.T) {
 	}
 	rd := RegularDeck{Deck{cards}}
 	rd.Sort()
-	assert.Equal(t, 3, len(rd.Cards))
-	assert.Equal(t, Card{TEN, CLUBS}, rd.Cards[0])
-	assert.Equal(t, Card{TEN, SPADES}, rd.Cards[1])
-	assert.Equal(t, Card{JACK, DIAMONDS}, rd.Cards[2])
+	assert.Equal(t, 3, len(rd.cards))
+	assert.Equal(t, Card{TEN, CLUBS}, rd.cards[0])
+	assert.Equal(t, Card{TEN, SPADES}, rd.cards[1])
+	assert.Equal(t, Card{JACK, DIAMONDS}, rd.cards[2])
 }
 
 func TestRegularDeckShuffled(t *testing.T) {
 	deck := NewRegularDeck()
 	deck.Shuffle()
-	PrintDeck("Shuffled deck", deck.Cards)
+	PrintDeck("Shuffled deck", deck.cards)
 }
 
 func TestRegularDeckShuffledThenSorted(t *testing.T) {
 	deck := NewRegularDeck()
 	deck.Shuffle()
 	deck.Sort()
-	PrintDeck("Shuffled then sorted deck", deck.Cards)
+	PrintDeck("Shuffled then sorted deck", deck.cards)
 }
 
 func TestRegularDeckRemove(t *testing.T) {
@@ -44,7 +44,7 @@ func TestRegularDeckRemove(t *testing.T) {
 	removed := deck.Remove(ACE_OF_SPADES)
 	assert.True(t, removed)
 	nAceSpades := 0
-	for _, card := range deck.Cards {
+	for _, card := range deck.cards {
 		if card == ACE_OF_SPADES {
 			nAceSpades++
 		}

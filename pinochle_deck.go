@@ -9,6 +9,8 @@ type PinochleDeck struct {
 	Deck
 }
 
+// PinochleRanks lists the acceptable ranks in a Pinochle deck in
+// reverse order of their precedence
 var PinochleRanks = []Rank{
 	NINE, JACK, QUEEN, KING, TEN, ACE,
 }
@@ -28,14 +30,14 @@ func NewPinochleDeck() PinochleDeck {
 			}
 		}
 	}
-	return PinochleDeck{Deck{Cards: cards}}
+	return PinochleDeck{Deck{cards}}
 }
 
 // ---------------------------------------------------------------------
 // Methods
 // ---------------------------------------------------------------------
 
-// Sort sorts the deck in place
-func (pd PinochleDeck) Sort() {
+// Sort sorts the deck in place using the Pinochle ordering of ranks.
+func (pd *PinochleDeck) Sort() {
 	pd.Deck.Sort(PinochleRanks)
 }

@@ -33,7 +33,7 @@ func NewRegularDeck() RegularDeck {
 // Methods
 // ---------------------------------------------------------------------
 
-// Sort sorts the deck in place
-func (rd RegularDeck) Sort() {
+// Sort sorts the deck in place using the regular ordering.
+func (rd *RegularDeck) Sort() {
 	rd.Deck.Sort(RegularRanks)
 }
