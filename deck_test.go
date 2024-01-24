@@ -1,10 +1,25 @@
 package cards
 
 import (
+	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func PrintDeck(label string, cards []Card) {
+	fmt.Printf("%s:\n", label)
+	buffer := make([]string, 0)
+	n := len(cards) / 4
+	for _, card := range cards {
+		buffer = append(buffer, card.Unicode())
+		if len(buffer) == n {
+			fmt.Printf("%s\n", strings.Join(buffer, " "))
+			buffer = buffer[0:0]
+		}
+	}
+}
 
 func TestDeck_Remove(t *testing.T) {
 	tests := []struct {
